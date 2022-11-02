@@ -4,6 +4,7 @@ import axios from 'axios';
 //https://api.imgur.com/3/account/me/images
 //Authorization
 //Bearer {{accessToken}}
+//https://api.imgur.com/3/upload
 
 const CLIENT_ID = 'b063539a7961925';
 const ROOT_URL = 'https://api.imgur.com';
@@ -25,5 +26,19 @@ export default {
         Authorization: `Bearer ${token}`,
       },
     });
+  },
+  uploadImages(images, token) {
+    const promises = Array.from(images).map((image) => {
+      const formData = new FormData();
+      formData.append('image', image);
+
+      return axios.post(`${ROOT_URL}/3/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    });
+
+    return Promise.all(promises);
   },
 };
