@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import auth from './modules/auth';
+import images from './modules/images';
 // import Vue from 'vue';
 
 // Vue.use(Vuex);
@@ -7,6 +8,7 @@ import auth from './modules/auth';
 const store = createStore({
   modules: {
     auth: auth,
+    images: images,
   },
 });
 export default store;
